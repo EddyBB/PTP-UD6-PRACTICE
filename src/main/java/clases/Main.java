@@ -3,6 +3,7 @@
  */
 package clases;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
@@ -16,6 +17,19 @@ public class Main {
      * @param datos formato "nick>dd/MM/yyyy>3.2
      */
     public static void alta (List<UserProfile> lista, String datos) {
+    	
+    	String [] campos = datos.split(">");
+    	
+    	String nick = campos [0];
+    	
+    	LocalDate regDate = LocalDate.parse(campos[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    	
+    	Float rating = Float.parseFloat(campos[2]);
+    	
+    	UserProfile obj = new UserProfile(nick, regDate, rating);
+    	
+    	lista.add(ob);
+    	
     }
     
     /**

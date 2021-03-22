@@ -1,5 +1,7 @@
 package clases;
 
+import java.time.LocalDate;
+
 /**
  * Esta clase perfil de usuario tiene los datos del usuario
  * en una famosa red Social
@@ -24,6 +26,29 @@ public class UserProfile{
 	 * recibidas por popularidad recibida de otros usuarios.
 	 */
 	
+	private String nick;
+	private LocalDate regDate;
+	private float rating;
+	
+	/**
+	 * 
+	 */
+	public UserProfile() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param nick
+	 * @param regDate
+	 * @param rating
+	 */
+	public UserProfile(String nick, LocalDate regDate, float rating) {
+		this.nick = nick;
+		this.regDate = regDate;
+		this.rating = rating;
+	}
+	
 	
 	/**
 	 * Metodos de la clase
@@ -34,5 +59,52 @@ public class UserProfile{
 	 * Generar un metodo equals que devuelve verdadero cuando el
 	 * nick es el mismo y falso en caso contrario
 	 */
+	
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+	
+	public String getNick() {
+		return nick;
+	}
 
+	/**
+	 * @return the regDate
+	 */
+	public LocalDate getRegDate() {
+		return regDate;
+	}
+
+	/**
+	 * @param regDate the regDate to set
+	 */
+	public void setRegDate(LocalDate regDate) {
+		this.regDate = regDate;
+	}
+
+	/**
+	 * @return the rating
+	 */
+	public float getRating() {
+		return rating;
+	}
+
+	/**
+	 * @param rating the rating to set
+	 */
+	public void setRating(float rating) {
+		this.rating = rating;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		boolean retorno = false;
+		
+		if(o instanceof UserProfile) {
+			UserProfile ob = (UserProfile) o;
+			retorno = nick.equals(ob.nick);
+		}
+		return retorno;
+	}
+	
 }
