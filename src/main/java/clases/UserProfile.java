@@ -1,6 +1,7 @@
 package clases;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Esta clase perfil de usuario tiene los datos del usuario
@@ -107,4 +108,9 @@ public class UserProfile{
 		return retorno;
 	}
 	
+	public String toStringFichero() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return nick + ">" + regDate.format(formatter) + ">" + rating;
+		
+	}
 }

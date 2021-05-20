@@ -3,91 +3,111 @@
  */
 package clases;
 
+import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    
-	public static void main (String [] args) {
-    }
-    
-    /**
-     * Inserta un objeto de tipo User profile en la lista
-     * @param lista
-     * @param datos formato "nick>dd/MM/yyyy>3.2
-     */
-    public static void alta (List<UserProfile> lista, String datos) {
-    	
-    	String [] separador = datos.split(">");
-    	
-    	String nick = separador [0];
-    	
-    	LocalDate regDate = LocalDate.parse(separador[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    	
-    	Float rating = Float.parseFloat(separador[2]);
-    	
-    	UserProfile obj = new UserProfile(nick, regDate, rating);
-    	
-    	lista.add(obj);
-    	
-    }
-    
-    /**
-     * Elimina un objeto de la lista
-     * @param lista
-     * @param elemento a Eliminar
-     * @return true si se elimino, false en caso contrario
-     */
-    public static boolean baja (List<UserProfile> lista, UserProfile elemento) {
-    	
-    	return lista.remove(elemento);
-    }
-    
-    /**
-     * Guarda los datos a un fichero
-     * Pregunta al usuario el nombre del fichero y lo recupera
-     * usando el metodo nextLine() de Scanner
-     * Por cada elemento de la lista escribe una linea en el fichero
-     * con el mismo formato que utiliza el alta de lista
-     * @param lista
-     */
-    public static void salvarDatos(List<UserProfile> lista) {
-    	
-    	
-    	
-    }
-    
-    /**
-     * Fichero que lee de disco un fichero con datos para cargarlo en
-     * la lista que se pasa como parametro
-     * Pregunta al usuario el nombre del fichero y lo recupera
-     * usando el metodo nextLine() de Scanner
-     * Por cada elemento de la lista hay una linea en el fichero
-     * con el mismo formato que utiliza el alta de lista
-     * @param lista
-     */
-    public static void cargarDatos(List<UserProfile> lista) {
-    }
-    
-    /**
-     * Metodo que realiza el ordenamiento natural de una lista que se pasa
-     * como parametro
-     * @param lista
-     */
-    public static void ordena(List<UserProfile> lista) {
-    }
-    
-    /**
-     * Metodo que realiza el ordenamiento por Rating de una lista que se pasa
-     * como parametro
-     * @param lista
-     */
-    public static void ordenaRating(List<UserProfile> lista) {
-    }
-    
-    
-    
-    
-    
+
+	public static void main(String[] args) {
+	}
+
+	/**
+	 * Inserta un objeto de tipo User profile en la lista
+	 * 
+	 * @param lista
+	 * @param datos formato "nick>dd/MM/yyyy>3.2
+	 */
+	public static void alta(List<UserProfile> lista, String datos) {
+
+		String[] separador = datos.split(">");
+
+		String nick = separador[0];
+
+		LocalDate regDate = LocalDate.parse(separador[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+		Float rating = Float.parseFloat(separador[2]);
+
+		UserProfile obj = new UserProfile(nick, regDate, rating);
+
+		lista.add(obj);
+
+	}
+
+	/**
+	 * Elimina un objeto de la lista
+	 * 
+	 * @param lista
+	 * @param elemento a Eliminar
+	 * @return true si se elimino, false en caso contrario
+	 */
+	public static boolean baja(List<UserProfile> lista, UserProfile elemento) {
+
+		return lista.remove(elemento);
+	}
+
+	/**
+	 * Guarda los datos a un fichero Pregunta al usuario el nombre del fichero y lo
+	 * recupera usando el metodo nextLine() de Scanner Por cada elemento de la lista
+	 * escribe una linea en el fichero con el mismo formato que utiliza el alta de
+	 * lista
+	 * 
+	 * @param lista
+	 */
+	public static void salvarDatos(List<UserProfile> lista) {
+
+		String nombretxt = "";
+
+		Scanner teclado = new Scanner(System.in);
+
+		System.out.println("Nombre a guardar el fichero con extension .txt");
+		nombretxt = teclado.nextLine();
+
+		try {
+
+			FileWriter escribir = new FileWriter(nombretxt);
+
+			// Escribimos linea a linea en el fichero
+			for (UserProfile u : lista) {
+				escribir.write(u.toStringFichero() + "\n");
+			}
+			System.out.println("El objeto UserProfile se ha guardado en el fichero correctamente\n");
+			escribir.close();
+
+		} catch (Exception ex) {
+			System.out.println("Error: el fichero no se ha guardado correctamente " + ex.getMessage());
+		}
+	}
+
+	/**
+	 * Fichero que lee de disco un fichero con datos para cargarlo en la lista que
+	 * se pasa como parametro Pregunta al usuario el nombre del fichero y lo
+	 * recupera usando el metodo nextLine() de Scanner Por cada elemento de la lista
+	 * hay una linea en el fichero con el mismo formato que utiliza el alta de lista
+	 * 
+	 * @param lista
+	 */
+	public static void cargarDatos(List<UserProfile> lista) {
+	}
+
+	/**
+	 * Metodo que realiza el ordenamiento natural de una lista que se pasa como
+	 * parametro
+	 * 
+	 * @param lista
+	 */
+	public static void ordena(List<UserProfile> lista) {
+	}
+
+	/**
+	 * Metodo que realiza el ordenamiento por Rating de una lista que se pasa como
+	 * parametro
+	 * 
+	 * @param lista
+	 */
+	public static void ordenaRating(List<UserProfile> lista) {
+	}
+
 }
