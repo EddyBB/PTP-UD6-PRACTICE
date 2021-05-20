@@ -4,6 +4,7 @@
 package clases;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Main {
@@ -18,17 +19,17 @@ public class Main {
      */
     public static void alta (List<UserProfile> lista, String datos) {
     	
-    	String [] campos = datos.split(">");
+    	String [] separador = datos.split(">");
     	
-    	String nick = campos [0];
+    	String nick = separador [0];
     	
-    	LocalDate regDate = LocalDate.parse(campos[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    	LocalDate regDate = LocalDate.parse(separador[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     	
-    	Float rating = Float.parseFloat(campos[2]);
+    	Float rating = Float.parseFloat(separador[2]);
     	
     	UserProfile obj = new UserProfile(nick, regDate, rating);
     	
-    	lista.add(ob);
+    	lista.add(obj);
     	
     }
     
@@ -39,7 +40,8 @@ public class Main {
      * @return true si se elimino, false en caso contrario
      */
     public static boolean baja (List<UserProfile> lista, UserProfile elemento) {
-    	return false;
+    	
+    	return lista.remove(elemento);
     }
     
     /**
@@ -51,6 +53,9 @@ public class Main {
      * @param lista
      */
     public static void salvarDatos(List<UserProfile> lista) {
+    	
+    	
+    	
     }
     
     /**

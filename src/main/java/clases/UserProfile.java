@@ -28,7 +28,7 @@ public class UserProfile{
 	
 	private String nick;
 	private LocalDate regDate;
-	private float rating;
+	private Float rating;
 	
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class UserProfile{
 	 * @param regDate
 	 * @param rating
 	 */
-	public UserProfile(String nick, LocalDate regDate, float rating) {
+	public UserProfile(String nick, LocalDate regDate, Float rating) {
 		this.nick = nick;
 		this.regDate = regDate;
 		this.rating = rating;
@@ -85,14 +85,14 @@ public class UserProfile{
 	/**
 	 * @return the rating
 	 */
-	public float getRating() {
+	public Float getRating() {
 		return rating;
 	}
 
 	/**
 	 * @param rating the rating to set
 	 */
-	public void setRating(float rating) {
+	public void setRating(Float rating) {
 		this.rating = rating;
 	}
 
@@ -102,7 +102,7 @@ public class UserProfile{
 		
 		if(o instanceof UserProfile) {
 			UserProfile ob = (UserProfile) o;
-			retorno = nick.equals(ob.nick);
+			retorno = nick.equalsIgnoreCase(ob.nick);
 		}
 		return retorno;
 	}
