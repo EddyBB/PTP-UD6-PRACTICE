@@ -3,9 +3,11 @@
  */
 package clases;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -90,6 +92,53 @@ public class Main {
 	 * @param lista
 	 */
 	public static void cargarDatos(List<UserProfile> lista) {
+
+		String nombretxt = "";
+
+		Scanner teclado = new Scanner(System.in);
+
+		System.out.println("Nombre del fichero a cargar con extension .txt");
+		nombretxt = teclado.nextLine();
+
+		// Fichero del que queremos leer
+		File fichero = new File(nombretxt);
+		Scanner s = null;
+
+		try {
+			// Leemos el contenido del fichero
+			System.out.println("... Leyendo el contenido del fichero ...\n");
+			s = new Scanner(fichero);
+
+			// Leemos linea a linea el fichero
+			while (s.hasNextLine()) {
+
+				String datos = s.nextLine();
+
+				String[] separador = datos.split(">");
+
+				String nick = separador[0];
+
+				LocalDate regDate = LocalDate.parse(separador[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+				Float rating = Float.parseFloat(separador[2]);
+
+				UserProfile obj = new UserProfile(nick, regDate, rating);
+
+				lista.add(obj);
+			}
+			System.out.println();
+
+		} catch (Exception ex) {
+			System.out.println("Mensaje: " + ex.getMessage());
+		} finally {
+			// Cerramos el fichero tanto si la lectura ha sido correcta o no
+			try {
+				if (s != null)
+					s.close();
+			} catch (Exception ex2) {
+				System.out.println("Mensaje 2: " + ex2.getMessage());
+			}
+		}
 	}
 
 	/**
@@ -99,6 +148,9 @@ public class Main {
 	 * @param lista
 	 */
 	public static void ordena(List<UserProfile> lista) {
+		
+		Collections.sort(lista);
+		System.out.println("UserProfile ordenado por nick\n");
 	}
 
 	/**
@@ -108,6 +160,10 @@ public class Main {
 	 * @param lista
 	 */
 	public static void ordenaRating(List<UserProfile> lista) {
+		
+		Collections.sort(lista, new UserProfile());
+		System.out.println("Catalogo ordenado por rating\n");
+		
 	}
 
 }

@@ -2,6 +2,7 @@ package clases;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 /**
  * Esta clase perfil de usuario tiene los datos del usuario
@@ -10,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  * @author eserrano
  *
  */
-public class UserProfile{
+public class UserProfile implements Comparable<UserProfile>, Comparator<UserProfile> {
 	
 	/**
 	 * Atributos de la clase
@@ -112,5 +113,20 @@ public class UserProfile{
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return nick + ">" + regDate.format(formatter) + ">" + rating;
 		
+	}
+
+	@Override
+	public int compare(UserProfile o, UserProfile u) {
+		return o.getRating().compareTo(u.getRating());
+	}
+
+	@Override
+	public int compareTo(UserProfile o) {
+		
+		if(nick.compareToIgnoreCase(o.nick) == 0) {
+			return regDate.compareTo(o.regDate);
+		}
+		
+		return this.nick.compareToIgnoreCase(o.nick);
 	}
 }
